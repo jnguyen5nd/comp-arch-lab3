@@ -12,7 +12,6 @@ int main(void) {
   int cache[1<<11] = {0};
   long unsigned int addr, tag, index, offset;
   double misses = 0, accesses = 0;
-  int B = 1;
 
   int i, j, k;
 
@@ -41,6 +40,7 @@ int main(void) {
 
   /* Do matrix multiply */
   int p, q, jj, kk;
+  int B = 10;
   for(jj = 0; jj < XSIZE; jj = jj+B) {
     for(kk = 0; kk < YSIZE; kk = kk+B) {
       for(i = 0; i < XSIZE; i = i+1) {

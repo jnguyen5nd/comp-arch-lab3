@@ -46,7 +46,7 @@ int main(void) {
         r = r + y[i][k] * z[k][j];
 
         addr = (long unsigned int) &y[i][k];
-        offset = addr & 0x00000000001f;
+        offset = addr & 0x00000000003f;
         index  = (addr & 0x00000001ffc0) >> 6;
         tag    = (addr & 0xfffffffe0000) >> 17;
 
