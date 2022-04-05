@@ -11,8 +11,8 @@ int main(void) {
   int z[XSIZE][YSIZE];
   int cache[1<<11] = {0};
   long unsigned int addr, tag, index, offset;
-  double misses = 0, accesses = 0;
-  long int B = (long int)argv[1];
+  double misses = 0, accesses = 0, hits =0;
+  long int B = 10;
   printf("%d\n", B);
 
   int i, j, k;
@@ -62,6 +62,8 @@ int main(void) {
             tag    = (addr & 0xffffffff0000) >> 16;
 
             if (cache[index] != tag) misses++;
+            else hits++;
+
             cache[index] = tag;
             accesses++;
 
@@ -71,6 +73,8 @@ int main(void) {
             tag    = (addr & 0xffffffff0000) >> 16;
 
             if (cache[index] != tag) misses++;
+            else hits++;
+
             cache[index] = tag;
             accesses++;
           }
@@ -83,6 +87,8 @@ int main(void) {
           tag    = (addr & 0xffffffff0000) >> 16;
 
           if (cache[index] != tag) misses++;
+          else hits++;
+
           cache[index] = tag;
           accesses++;
 
@@ -92,6 +98,8 @@ int main(void) {
           tag    = (addr & 0xffffffff0000) >> 16;
 
           if (cache[index] != tag) misses++;
+          else hits++;
+
           cache[index] = tag;
           accesses++;
 
@@ -100,7 +108,7 @@ int main(void) {
     }
   }
 
-  printf("B: %d\tMisses: %.2lf\tAccesses: %.2lf\tMiss Rate: %.3lf%%\n", B, misses, accesses, misses/accesses*100);
+  printf("B: %d\tMisses: %.2lf\tHits: %.2lf\tAccesses: %.2lf\tMiss Rate: %.3lf%%\n", B, misses, accesses, misses/accesses*100);
 
   /* Print the Matrix*/
   // for (int row = 0; row < 8; row++) {
