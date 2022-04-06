@@ -10,7 +10,7 @@ int main(void) {
   int y[XSIZE][YSIZE];
   int z[XSIZE][YSIZE];
 
-  long int B, Bvals[] = {1, 10, 74};
+  long int B, Bvals[] = {10, 74};
 
   int i, j, k;
 
@@ -39,7 +39,7 @@ int main(void) {
 
   /* Do matrix multiply */
   int p, q, jj, kk, iter;
-  for (iter = 0; iter < 3; iter++) {
+  for (iter = 0; iter < 2; iter++) {
     B = Bvals[iter];
     int cache[1<<11] = {0};
     long unsigned int addr, tag, index, offset;

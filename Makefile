@@ -1,8 +1,11 @@
 CC:= gcc
 CFLAGS:= -std=gnu99
-TARGETS:= Q1 Q2 Q4 temps
+TARGETS:= Q1 Q2 Q4 Q6 temps
 EXE:= exe
 ARM:= /home/software/arm/cross-compiler/gcc-4.1.1-glibc-2.3.2/arm-unknown-linux-gnu/bin/arm-unknown-linux-gnu-gcc
+ARMFLAGS:= -static
+SIM:= /escnfs/courses/sp22-cse-30321.01/public/arm/simplesim-arm/sim-outorder
+
 
 all: $(TARGETS)
 
@@ -13,6 +16,8 @@ Q1: table
 Q2: 200_64K_q2 400_64K_q2 200_128K_q2 400_128K_q2
 
 Q4: 200_64K_q4 400_64K_q4 200_128K_q4 400_128K_q4
+
+Q6: blocking_q6
 
 # Templates
 blocking: templates/blocking.c
@@ -54,6 +59,10 @@ table: ./question1/no_blocking_table.c
 400_128K_q4: ./question4/block_400_128K.c
 	$(CC) $(CFLAGS) -o ./$(EXE)/$@ $<
 
+# Q6
+blocking_q6: ./question6/blocking.c ./question6/sa1core.cfg
+	$(ARM) $(ARMFLAGS) -o ./$(EXE)/$@ $<
+	$(SIM) -config ./question6/sa1core.cfg ./$(EXE)/$@
 
 
 # Clean
