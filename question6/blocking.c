@@ -40,7 +40,7 @@ int main(void) {
 
   /* Do matrix multiply */
   int p, q, jj, kk;
-  int B = 10;
+  int B = 150;
   for(jj = 0; jj < XSIZE; jj = jj+B) {
     for(kk = 0; kk < YSIZE; kk = kk+B) {
       for(i = 0; i < XSIZE; i = i+1) {
