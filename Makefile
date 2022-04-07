@@ -17,7 +17,7 @@ Q2: 200_64K_q2 400_64K_q2 200_128K_q2 400_128K_q2
 
 Q4: 200_64K_q4 400_64K_q4 200_128K_q4 400_128K_q4
 
-Q6: blocking_q6
+Q6: sa1core
 
 # Templates
 blocking: templates/blocking.c
@@ -60,9 +60,11 @@ table: ./question1/no_blocking_table.c
 	$(CC) $(CFLAGS) -o ./$(EXE)/$@ $<
 
 # Q6
-blocking_q6: ./question6/blocking.c ./question6/sa1core.cfg
+blocking_q6: ./question6/blocking.c
 	$(ARM) $(ARMFLAGS) -o ./$(EXE)/$@ $<
-	$(SIM) -config ./question6/sa1core.cfg ./$(EXE)/$@
+
+sa1core: ./question6/sa1core.cfg blocking_q6
+	$(SIM) -config $< ./$(EXE)/blocking_q6
 
 
 # Clean
